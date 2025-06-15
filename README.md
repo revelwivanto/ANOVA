@@ -1,113 +1,113 @@
-# Analysis of Variance (ANOVA)
+# Analisis Varian (ANOVA)
 
-## Table of Contents
-1. [Introduction](#introduction)  
-2. [Why Use ANOVA?](#why-use-anova)  
-3. [Types of ANOVA](#types-of-anova)  
-4. [Key Concepts & Terminology](#key-concepts--terminology)  
-5. [Statistical Model & Hypotheses](#statistical-model--hypotheses)  
-6. [Assumptions](#assumptions)  
-7. [ANOVA Table & Formulas](#anova-table--formulas)  
-8. [Step-by-Step Example](#step-by-step-example)  
-9. [Implementations](#implementations)  
+## Daftar Isi
+1. [Pendahuluan](#pendahuluan)  
+2. [Mengapa Menggunakan ANOVA?](#mengapa-menggunakan-anova)  
+3. [Jenis-Jenis ANOVA](#jenis-jenis-anova)  
+4. [Konsep-Konsep Kunci & Terminologi](#konsep-konsep-kunci--terminologi)  
+5. [Model Statistik & Hipotesis](#model-statistik--hipotesis)  
+6. [Asumsi](#asumsi)  
+7. [Tabel ANOVA & Rumus](#tabel-anova--rumus)  
+8. [Contoh Langkah demi Langkah](#contoh-langkah-demi-langkah)  
+9. [Implementasi](#implementasi)  
    - [Python (SciPy)](#python-scipy)  
    - [Excel](#excel)  
-10. [Interpreting Results](#interpreting-results)  
-11. [Limitations & Alternatives](#limitations--alternatives)  
-12. [References](#references)  
+10. [Menginterpretasikan Hasil](#menginterpretasikan-hasil)  
+11. [Keterbatasan & Alternatif](#keterbatasan--alternatif)  
+12. [Referensi](#referensi)  
 
 ---
 
-## Introduction  
-Analysis of Variance (ANOVA) is a collection of statistical models and their associated estimation procedures used to analyze the differences among group means. Invented by Ronald A. Fisher in the 1920s, ANOVA extends the two-sample _t_-test to more than two groups by partitioning variability in the data into components.
+## Pendahuluan  
+Analisis Varian (ANOVA) adalah kumpulan model statistik dan prosedur estimasinya yang digunakan untuk menganalisis perbedaan antara rata-rata kelompok. Diciptakan oleh Ronald A. Fisher pada tahun 1920-an, ANOVA memperluas uji _t_ dua sampel ke lebih dari dua kelompok dengan membagi variabilitas dalam data menjadi komponen-komponen.
 
 ---
 
-## Why Use ANOVA?  
-- **Multiple Groups**: When comparing means across three or more independent samples.  
-- **Control Type I Error**: Conducting multiple _t_-tests inflates the probability of a false positive; ANOVA controls the overall significance level.  
-- **Decompose Variance**: Separates total variability into “between‐group” and “within‐group” components, helping to pinpoint sources of variation.
+## Mengapa Menggunakan ANOVA?  
+- **Banyak Kelompok**: Saat membandingkan rata-rata antara tiga atau lebih sampel independen.  
+- **Kontrol Kesalahan Jenis I**: Melakukan uji _t_ yang banyak dapat meningkatkan probabilitas kesalahan positif; ANOVA mengontrol tingkat signifikansi keseluruhan.  
+- **Menguraikan Variabilitas**: Memisahkan variabilitas total menjadi komponen "antara kelompok" dan "dalam kelompok", membantu menentukan sumber-sumber variasi.
 
 ---
 
-## Types of ANOVA  
-| Type             | Design                           | Notes                                                  |
-|------------------|----------------------------------|--------------------------------------------------------|
-| **One-Way ANOVA**| One categorical factor           | Tests whether 𝜇₁ = 𝜇₂ = … = 𝜇ₖ for _k_ groups.         |
-| **Two-Way ANOVA**| Two categorical factors          | Can test main effects and interaction effect.          |
-| **Repeated Measures ANOVA** | Same subjects at multiple levels | Accounts for correlation between repeated observations. |
-| **Mixed-Effects ANOVA** | Fixed and random effects         | Models both population‐level and subject‐level effects. |
+## Jenis-Jenis ANOVA  
+| Jenis              | Desain                           | Catatan                                                  |
+|-------------------|----------------------------------|--------------------------------------------------------|
+| **ANOVA Satu Arah**| Satu faktor kategorik            | Mengujicoba apakah 𝜇₁ = 𝜇₂ = … = 𝜇ₖ untuk _k_ kelompok.         |
+| **ANOVA Dua Arah**| Dua faktor kategorik            | Dapat menguji efek utama dan interaksi.                  |
+| **ANOVA Ukuran Berulang** | Sama subjek di beberapa tingkat | Menghitung korelasi antara pengamatan berulang.          |
+| **ANOVA Efek Campuran** | Efek tetap dan efek acak        | Memodelkan efek populasi dan efek subjek.              |
 
 ---
 
-## Key Concepts & Terminology  
-- **Group Mean (𝑥̄ᵢ)**: Average of observations in group _i_.  
-- **Grand Mean (𝑥̄)**: Average across all observations (all groups).  
-- **Between‐Group Sum of Squares (SS<sub>B</sub>)**:  
+## Konsep-Konsep Kunci & Terminologi  
+- **Rata-Rata Kelompok (𝑥̄ᵢ)**: Rata-rata observasi dalam kelompok _i_.  
+- **Rata-Rata Total (𝑥̄)**: Rata-rata semua observasi (semua kelompok).  
+- **Jumlah Kuadrat Antara Kelompok (SS<sub>B</sub>)**:  
   \[
     SS_B = \sum_{i=1}^{k} n_i (x̄_i - x̄)^2
   \]  
-- **Within‐Group Sum of Squares (SS<sub>W</sub>)**:  
+- **Jumlah Kuadrat Dalam Kelompok (SS<sub>W</sub>)**:  
   \[
     SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - x̄_i)^2
   \]  
-- **Total Sum of Squares (SS<sub>T</sub>)**:  
+- **Jumlah Kuadrat Total (SS<sub>T</sub>)**:  
   \[
     SS_T = SS_B + SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} ( x_{ij} - x̄ )^2
   \]  
-- **Degrees of Freedom (df)**:  
-  - Between: _k–1_  
-  - Within: _N–k_  
+- **Derajat Kebebasan (df)**:  
+  - Antara: _k–1_  
+  - Dalam: _N–k_  
   - Total: _N–1_  
-- **Mean Squares (MS)**: SS divided by corresponding df.  
+- **Rata-Rata Kuadrat (MS)**: SS dibagi dengan df yang sesuai.  
   - MS<sub>B</sub> = SS<sub>B</sub> / (k–1)  
   - MS<sub>W</sub> = SS<sub>W</sub> / (N–k)  
-- **F-Statistic**:  
+- **Statistik F**:  
   \[
     F = \frac{MS_B}{MS_W}
   \]
 
 ---
 
-## Statistical Model & Hypotheses  
-For a one‐way ANOVA with _k_ groups and observations _x<sub>ij</sub>_:
+## Model Statistik & Hipotesis  
+Untuk ANOVA satu arah dengan _k_ kelompok dan observasi _x<sub>ij</sub>_:
 
 \[
   x_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad \varepsilon_{ij}\sim N(0,\sigma^2)
 \]
 
-- **Null Hypothesis (H₀)**: All group means are equal:  
+- **Hipotesis Nol (H₀)**: Semua rata-rata kelompok sama:  
   \[
     H_0:\; \mu_1 = \mu_2 = \dots = \mu_k
   \]
-- **Alternative Hypothesis (H₁)**: At least one group mean differs.
+- **Hipotesis Alternatif (H₁)**: Paling tidak satu rata-rata kelompok berbeda.
 
 ---
 
-## Assumptions  
-1. **Independence**: Observations are independent.  
-2. **Normality**: Residuals _ε<sub>ij</sub>_ are normally distributed.  
-3. **Homoscedasticity**: Equal variances across groups (σ² common).  
+## Asumsi  
+1. **Kemandirian**: Observasi-observasi independen.  
+2. **Keseragaman**: Residual _ε<sub>ij</sub>_ berdistribusi normal.  
+3. **Homogenitas Variansi**: Variansi sama untuk semua kelompok (σ² sama).  
 
-> _Note_: If homoscedasticity fails, consider Welch’s ANOVA or non‐parametric Kruskal–Wallis test.
+> _Catatan_: Jika homogenitas variansi gagal, pertimbangkan ANOVA Welch atau uji Kruskal-Wallis non-parametrik.
 
 ---
 
-## ANOVA Table & Formulas  
+## Tabel ANOVA & Rumus  
 
-| Source        | SS         | df     | MS              | F               |
+| Sumber        | SS         | df     | MS              | F               |
 |---------------|------------|--------|-----------------|-----------------|
-| Between (B)   | SS<sub>B</sub> | k–1    | MS<sub>B</sub>=SS<sub>B</sub>/(k–1) | F=MS<sub>B</sub>/MS<sub>W</sub> |
-| Within (W)    | SS<sub>W</sub> | N–k    | MS<sub>W</sub>=SS<sub>W</sub>/(N–k) |                 |
+| Antara (B)   | SS<sub>B</sub> | k–1    | MS<sub>B</sub>=SS<sub>B</sub>/(k–1) | F=MS<sub>B</sub>/MS<sub>W</sub> |
+| Dalam (W)    | SS<sub>W</sub> | N–k    | MS<sub>W</sub>=SS<sub>W</sub>/(N–k) |                 |
 | **Total (T)** | SS<sub>T</sub> | N–1    |                 |                 |
 
-- **Critical F-value**: _F<sub>crit</sub> = F<sub>α; df1=k–1; df2=N–k</sub>_  
-- **P-value**: _P = P(F ≥ observed F)_
+- **Nilai F Kritis**: _F<sub>crit</sub> = F<sub>α; df1=k–1; df2=N–k</sub>_  
+- **Nilai P**: _P = P(F ≥ observed F)_
 
 ---
 
-## Step-by-Step Example  
-Suppose three fertilizers (A, B, C) tested on crop yield (kg) over _n = 5_ plots each:
+## Contoh Langkah demi Langkah  
+Misalkan tiga pupuk (A, B, C) diuji terhadap hasil panen (kg) pada _n = 5_ plot masing-masing:
 
 | Plot | A   | B   | C   |
 |------|-----|-----|-----|
@@ -117,52 +117,25 @@ Suppose three fertilizers (A, B, C) tested on crop yield (kg) over _n = 5_ plots
 | 4    | 29  | 25  | 34  |
 | 5    | 33  | 29  | 37  |
 
-1. **Compute group means**:  
+1. **Hitung rata-rata kelompok**:  
    - 𝑥̄<sub>A</sub> = 31, 𝑥̄<sub>B</sub> = 27, 𝑥̄<sub>C</sub> = 35  
-   - Grand mean 𝑥̄ = (31+27+35)/3 = 31  
+   - Rata-rata total 𝑥̄ = (31+27+35)/3 = 31  
 
-2. **Compute SS<sub>B</sub>**:  
+2. **Hitung SS<sub>B</sub>**:  
    \[
      SS_B = 5[(31-31)^2 + (27-31)^2 + (35-31)^2]
            = 5[0 + 16 + 16] = 160
    \]
 
-3. **Compute SS<sub>W</sub>**:  
+3. **Hitung SS<sub>W</sub>**:  
    \[
      SS_W = \sum_i \sum_j (x_{ij} - x̄_i)^2
            = \ldots = 40  \quad(\text{details omitted for brevity})
    \]
 
-4. **Degrees of freedom**:  
+4. **Derajat kebebasan**:  
    - df<sub>B</sub> = 3–1 = 2  
    - df<sub>W</sub> = 15–3 = 12  
 
-5. **Mean squares**:  
-   - MS<sub>B</sub> = 160 / 2 = 80  
-   - MS<sub>W</sub> = 40 / 12 ≈ 3.333  
+5. **Rata-rata kuadrat**:  
 
-6. **F-statistic**:  
-   \[
-     F = 80 / 3.333 ≈ 24
-   \]
-
-7. **Decision**:  
-   - For α = 0.05, df1 = 2, df2 = 12, _F<sub>crit</sub>_ ≈ 3.89.  
-   - Observed F (24) > 3.89 ⇒ reject H₀ ⇒ at least one mean differs.
-
----
-
-## Implementations
-
-### Python (SciPy)
-```python
-import numpy as np
-from scipy import stats
-
-# Data
-A = np.array([30, 32, 31, 29, 33])
-B = np.array([28, 26, 27, 25, 29])
-C = np.array([35, 33, 36, 34, 37])
-
-F_stat, p_value = stats.f_oneway(A, B, C)
-print(f"F = {F_stat:.3f}, p = {p_value:.3f}")
