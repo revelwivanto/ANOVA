@@ -48,13 +48,9 @@ Analisis Varian (ANOVA) adalah kumpulan model statistik dan prosedur estimasinya
     $$SS_B = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2$$
   
 - **Jumlah Kuadrat Dalam Kelompok (SS<sub>W</sub>)**:  
-  \[
-    SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2
-  \]  
+  $$SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2$$  
 - **Jumlah Kuadrat Total (SS<sub>T</sub>)**:  
-  \[
-    SS_T = SS_B + SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} ( x_{ij} - \bar{x} )^2
-  \]  
+  $$SS_T = SS_B + SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} ( x_{ij} - \bar{x} )^2$$  
 - **Derajat Kebebasan (df)**:  
   - Antara: _k–1_  
   - Dalam: _N–k_  
@@ -63,23 +59,17 @@ Analisis Varian (ANOVA) adalah kumpulan model statistik dan prosedur estimasinya
   - MS<sub>B</sub> = SS<sub>B</sub> / (k–1)  
   - MS<sub>W</sub> = SS<sub>W</sub> / (N–k)  
 - **Statistik F**:  
-  \[
-    F = \frac{MS_B}{MS_W}
-  \]
+  $$F = \frac{MS_B}{MS_W}$$
 
 ---
 
 ## Model Statistik & Hipotesis  
 Untuk ANOVA satu arah dengan _k_ kelompok dan observasi _x<sub>ij</sub>_:
 
-\[
-  x_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad \varepsilon_{ij}\sim N(0,\sigma^2)
-\]
+$$x_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad \varepsilon_{ij}\sim N(0,\sigma^2)$$
 
 - **Hipotesis Nol (H₀)**: Semua rata-rata kelompok sama:  
-  \[
-    H_0:\; \mu_1 = \mu_2 = \dots = \mu_k
-  \]
+  $$H_0:\; \mu_1 = \mu_2 = \dots = \mu_k$$
 - **Hipotesis Alternatif (H₁)**: Paling tidak satu rata-rata kelompok berbeda.
 
 ---
@@ -118,24 +108,22 @@ Misalkan tiga pupuk (A, B, C) diuji terhadap hasil panen (kg) pada _n = 5_ plot 
 | 5    | 33  | 29  | 37  |
 
 1. **Hitung rata-rata kelompok**:  
-   - \(\bar{x}_A = 31\), \(\bar{x}_B = 27\), \(\bar{x}_C = 35\)  
-   - Rata-rata total \(\bar{x} = \frac{31+27+35}{3} = 31\)  
+   - $$\(\bar{x}_A = 31\), \(\bar{x}_B = 27\), \(\bar{x}_C = 35\)$$  
+   - Rata-rata total $$$$\(\bar{x} = \frac{31+27+35}{3} = 31\)$$  
 
 2. **Hitung SS<sub>B</sub>**:  
-   \[
-     SS_B = 5[(31-31)^2 + (27-31)^2 + (35-31)^2]
-           = 5[0 + 16 + 16] = 160
-   \]
+   $$SS_B = 5[(31-31)^2 + (27-31)^2 + (35-31)^2]$$
+           $$= 5[0 + 16 + 16] = 160$$
 
 3. **Hitung SS<sub>W</sub>**:  
-   \[
-     SS_W = \sum_i \sum_j (x_{ij} - \bar{x}_i)^2
-           = \ldots = 40  \quad(\text{details omitted for brevity})
-   \]
+     $$SS_W = \sum_i \sum_j (x_{ij} - \bar{x}_i)^2$$
+           $$= \ldots = 40  \quad(\text{details omitted for brevity})$$
 
 4. **Derajat kebebasan**:  
    - df<sub>B</sub> = 3–1 = 2  
    - df<sub>W</sub> = 15–3 = 12  
 
-5. **Rata-rata kuadrat**:  
+5. **Rata-rata kuadrat**:
+
+
 
