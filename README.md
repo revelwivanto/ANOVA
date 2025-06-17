@@ -44,9 +44,9 @@ Analisis Varian (ANOVA) adalah kumpulan model statistik dan prosedur estimasinya
 - **Rata-Rata Kelompok (𝑥̄ᵢ)**: Rata-rata observasi dalam kelompok _i_.  
 - **Rata-Rata Total (𝑥̄)**: Rata-rata semua observasi (semua kelompok).  
 - **Jumlah Kuadrat Antara Kelompok (SS<sub>B</sub>)**:  
-  $$
-    SS_B = \sum_{i=1}^{k} n_i (x̄_i - x̄)^2
-  $$
+  
+    $$SS_B = \sum_{i=1}^{k} n_i (x̄_i - x̄)^2$$
+  
 - **Jumlah Kuadrat Dalam Kelompok (SS<sub>W</sub>)**:  
   \[
     SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - x̄_i)^2
