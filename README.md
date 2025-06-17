@@ -45,15 +45,15 @@ Analisis Varian (ANOVA) adalah kumpulan model statistik dan prosedur estimasinya
 - **Rata-Rata Total (𝑥̄)**: Rata-rata semua observasi (semua kelompok).  
 - **Jumlah Kuadrat Antara Kelompok (SS<sub>B</sub>)**:  
   
-    $$SS_B = \sum_{i=1}^{k} n_i (x̄_i - x̄)^2$$
+    $$SS_B = \sum_{i=1}^{k} n_i (\bar{x}_i - \bar{x})^2$$
   
 - **Jumlah Kuadrat Dalam Kelompok (SS<sub>W</sub>)**:  
   \[
-    SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - x̄_i)^2
+    SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} (x_{ij} - \bar{x}_i)^2
   \]  
 - **Jumlah Kuadrat Total (SS<sub>T</sub>)**:  
   \[
-    SS_T = SS_B + SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} ( x_{ij} - x̄ )^2
+    SS_T = SS_B + SS_W = \sum_{i=1}^{k} \sum_{j=1}^{n_i} ( x_{ij} - \bar{x} )^2
   \]  
 - **Derajat Kebebasan (df)**:  
   - Antara: _k–1_  
@@ -118,8 +118,8 @@ Misalkan tiga pupuk (A, B, C) diuji terhadap hasil panen (kg) pada _n = 5_ plot 
 | 5    | 33  | 29  | 37  |
 
 1. **Hitung rata-rata kelompok**:  
-   - 𝑥̄<sub>A</sub> = 31, 𝑥̄<sub>B</sub> = 27, 𝑥̄<sub>C</sub> = 35  
-   - Rata-rata total 𝑥̄ = (31+27+35)/3 = 31  
+   - \(\bar{x}_A = 31\), \(\bar{x}_B = 27\), \(\bar{x}_C = 35\)  
+   - Rata-rata total \(\bar{x} = \frac{31+27+35}{3} = 31\)  
 
 2. **Hitung SS<sub>B</sub>**:  
    \[
@@ -129,7 +129,7 @@ Misalkan tiga pupuk (A, B, C) diuji terhadap hasil panen (kg) pada _n = 5_ plot 
 
 3. **Hitung SS<sub>W</sub>**:  
    \[
-     SS_W = \sum_i \sum_j (x_{ij} - x̄_i)^2
+     SS_W = \sum_i \sum_j (x_{ij} - \bar{x}_i)^2
            = \ldots = 40  \quad(\text{details omitted for brevity})
    \]
 
