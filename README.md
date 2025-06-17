@@ -14,7 +14,9 @@
    - [Excel](#excel)  
 10. [Menginterpretasikan Hasil](#menginterpretasikan-hasil)  
 11. [Keterbatasan & Alternatif](#keterbatasan--alternatif)  
-12. [Referensi](#referensi)  
+12. [Soal1](#soal1)  
+12. [Soal2](#soal2)  
+12. [Soal3](#soal3)  
 
 ---
 
@@ -96,7 +98,8 @@ $$x_{ij} = \mu + \tau_i + \varepsilon_{ij}, \quad \varepsilon_{ij}\sim N(0,\sigm
 
 ---
 
-## Contoh Langkah Langkah  
+## Contoh Langkah Langkah
+# soal1  
 # Latihan: Pengaruh Waktu Pemanggangan terhadap Aroma Kopi
 
 Sebuah laboratorium penelitian kopi ingin menentukan bagaimana **waktu pemanggangan** (dalam menit) mempengaruhi **intensitas aroma** (dalam skala 0 hingga 100) dari biji kopi. Aroma adalah atribut sensorik penting yang perlu dioptimalkan untuk kepuasan pelanggan.
@@ -220,6 +223,7 @@ Hasil dari output regresi (misalnya dari Excel):
 
 Karena **P-value < 0.05**, maka kita **menolak H₀**. Artinya, ada **pengaruh signifikan** dari waktu drive-in (x1) terhadap gain transistor (y).
 
+# soal2  
 # Latihan: Pengaruh Drive-In Time dan Dosis Terhadap Gain Transistor
 
 Dalam proses manufaktur sirkuit terpadu, salah satu karakteristik penting adalah **gain transistor (hFE)**, yang dipengaruhi oleh dua variabel proses saat deposisi: **waktu drive-in emitor (x1, dalam menit)** dan **dosis emitor (x2, dalam satuan ion × 10^14)**.
@@ -379,7 +383,7 @@ Karena **P-value LOF = 0.22 > 0.05**, maka kita **tidak menolak H₀**.
 
 Artinya, **tidak ada bukti signifikan bahwa model linear tidak cocok**. Dengan kata lain, **model linear dianggap memadai** untuk menjelaskan hubungan antara waktu drive-in dan gain.
 
-
+# soal3
 # Latihan: Pengaruh Konsentrasi Kafein terhadap Detak Jantung Tikus
 
 Dalam studi laboratorium oleh Fakultas Kedokteran Hewan, dilakukan eksperimen untuk menyelidiki pengaruh **kafein** terhadap sistem kardiovaskular tikus. Dalam percobaan ini, 5 kelompok masing-masing terdiri dari 5 ekor tikus betina sehat dengan usia dan berat badan serupa.
